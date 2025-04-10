@@ -25,9 +25,9 @@ void CreareVerificareDirector(const char *huntId)
 {
     //cream si verificam directorul cu numele huntId
     struct stat st;
-    if(lstat(huntId,&st)==-1 || !S_ISDIR(st.st_mode)) //verific daca directorul nu exista sau nu este director
+    if(lstat(huntId,&st) == -1 || !S_ISDIR(st.st_mode)) //verific daca directorul nu exista sau nu este director
     {
-        if ((mkdir(huntId,0777))==-1)
+        if ((mkdir(huntId,0777)) == -1)
         {
             perror("error creating directory");
             exit(EXIT_FAILURE);
