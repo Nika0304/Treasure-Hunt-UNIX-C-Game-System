@@ -294,7 +294,7 @@ void add_treasure(const char *huntId)
     snprintf(log_path, sizeof(log_path), "%s/logged%s.txt", huntId,huntId);
     log_operation(huntId, "added treasure");
     createSymlink(huntId,log_path);
-    close(treasure_file);
+    closeFileWithCheck(fd, "Error closing the treasure file");
     write(1, "The treasure has been added successfully.\n", strlen("The treasure has been added successfully.\n"));
 
 
