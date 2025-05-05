@@ -192,13 +192,16 @@ void handleSignalStop(int sig)
 void handler_sigchld(int sig)
 {
    int status;
-   // Wait for the monitor process to terminate
+   // asteptam terminarea procesului monitor
    waitpid(monitor_pid, &status, 0);
    printf("\nMonitor ended with code %d\n", WEXITSTATUS(status));
+   
    monitor_running = 0;
    monitor_pid = -1;
    monitor_stopping = 0;
+   
 }
+
 
 //Starts the monitor as a child process that handles signals
 void start_monitor()
@@ -262,17 +265,20 @@ void start_monitor()
 }
 
 //Sends SIGUSR2 to stop the monitor process.
-void stop_monitor()
+void stop_monitor() 
 {
-    if(monitor_running == 0) 
-        printf("Monitor is not running\n");
-    else
+    if (monitor_running == 0) 
     {
-        // Send SIGUSR2 signal to stop the monitor
-        kill(monitor_pid, SIGUSR2);
-        monitor_running = 0;  // Mark the monitor as not running
-        usleep(2000);
+        printf("Monitor is not running\n");
+    } 
+    else if (monitor_stopping == 1) 
+    {
+        printf("Monitor is already stopping\n");
+    } 
+    else 
+    {
         monitor_stopping = 1;
-        printf("Monitor stopped successfully.\n");
+        kill(monitor_pid, SIGUSR2);
+        usleep(10000);  
     }
 }
