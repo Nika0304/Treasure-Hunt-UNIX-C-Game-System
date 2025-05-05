@@ -22,6 +22,10 @@ int main()
 
     while (1) 
     {
+        if (monitor_stopping == 1)
+        {
+            continue;
+        }
         printf("\n--- Treasure Manager ---\n");
         printf("start_monitor\nlist_hunts\nlist_treasures [huntId]\nview_treasure [huntId] [id]\nstop_monitor\nexit\n> ");
         fflush(stdout);
