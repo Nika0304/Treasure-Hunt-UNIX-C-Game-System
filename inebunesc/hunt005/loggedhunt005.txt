@@ -1,0 +1,2 @@
+[Mon May  5 00:45:45 2025] added treasure
+[Mon May  5 00:45:54 2025] list hunt
