@@ -185,7 +185,7 @@ void handle_signal1(int sig)
 void handleSignalStop(int sig)
 {
     printf("Monitor stopping\n");
-    usleep(2000000); //2 seconds 
+   // usleep(2000); //2 seconds 
     exit(0); // Terminate the process
 }
 
@@ -279,6 +279,6 @@ void stop_monitor()
     {
         monitor_stopping = 1;
         kill(monitor_pid, SIGUSR2);
-        usleep(10000);  
+        usleep(1000);  
     }
 }
